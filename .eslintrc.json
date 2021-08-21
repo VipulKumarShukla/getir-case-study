@@ -1,0 +1,19 @@
+{
+  "env": {
+    "node": true,
+    "jest": true
+  },
+  "plugins": ["jest", "security", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2019
+  },
+  "rules": {
+    "no-console": 0,
+    "func-names": 0,
+    "no-underscore-dangle": 0,
+    "consistent-return": 0,
+    "jest/expect-expect": 0,
+    "security/detect-object-injection": 0,
+    "jest/valid-expect": 0
+  }
+}
