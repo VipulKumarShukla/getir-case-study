@@ -1,7 +1,6 @@
 const Joi = require("@hapi/joi");
 const httpStatus = require("http-status");
 
-const { pick } = require("../utilities/helper");
 const { validationErr } = require("../utilities/error/handler");
 
 /**
@@ -10,11 +9,9 @@ const { validationErr } = require("../utilities/error/handler");
  * @returns validationErr || next()
  */
 const validateSchema = (schema) => (req, res, next) => {
-  const validSchema = pick(schema, ["params", "query", "body"]);
-  const object = pick(req, Object.keys(validSchema));
-  const { value, error } = Joi.compile(validSchema)
+  const { value, error } = Joi.compile(schema.body)
     .prefs({ errors: { label: "key" } })
-    .validate(object);
+    .validate(req.body);
 
   if (error) {
     let errorMessage = error.message;
